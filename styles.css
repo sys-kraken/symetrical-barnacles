@@ -5,7 +5,7 @@
   --ink:       #23211c;
   --ink-soft:  #55514a;
   --ink-faint: #8a857b;
-  --accent:    #c96442;   /* clay / coral — matches the logo body (#c06050) */
+  --accent:    #c96442;   /* clay / coral — matches the octopus logo body (#c06050) */
   --accent-soft:#f2e4dd;
   --logo-shade: #5c3345;  /* deep plum from the logo's shading (#503050) */
   --line:      #e7e3d9;
@@ -64,22 +64,32 @@ nav {
 .btn-primary { background: var(--accent); color: #fff; }
 .btn-primary:hover { background: #b5563a; transform: translateY(-2px); }
 
+/* ---------- Hero ---------- */
+.hero { text-align: center; padding: 72px 0 8px; }
+.hero h1 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, 3.6rem); line-height: 1.05; letter-spacing: -0.02em;
+  margin: 0 auto 16px; max-width: 18ch;
+}
+.hero .lead { margin-inline: auto; margin-bottom: 0; }
+
 /* ---------- Trust row ---------- */
-.trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 28px; padding: 40px 0 8px; }
+.trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 28px; padding: 28px 0 8px; }
 .trust span { display: inline-flex; align-items: center; gap: 8px; font-size: .88rem; color: var(--ink-soft); }
 .trust svg { width: 17px; height: 17px; color: var(--accent); }
 
 /* ---------- Product ---------- */
 section { padding: 64px 0 90px; }
 .product { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: start; }
-@media (max-width: 860px){ .product { grid-template-columns: 1fr; gap: 40px; } }
+@media (max-width: 860px){ .product { grid-template-columns: 1fr; gap: 40px; } .dl-panel { position: static; } }
 
 .pill {
   display: inline-block; font-size: .78rem; font-weight: 500; letter-spacing: .01em;
   color: var(--accent); background: var(--accent-soft);
   padding: 5px 13px; border-radius: 999px; margin-bottom: 20px;
 }
-.product-info h1 {
+.app-sec + .app-sec { border-top: 1px solid var(--line-soft); }
+.product-info h1, .product-info .app-title {
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(2.6rem, 5.5vw, 3.8rem); line-height: 1.02; letter-spacing: -0.02em;
   margin-bottom: 16px;
@@ -98,6 +108,8 @@ section { padding: 64px 0 90px; }
 }
 .dl-head { display: flex; align-items: center; gap: 13px; margin-bottom: 22px; }
 .dl-logo { width: 44px; height: 44px; object-fit: contain; border-radius: 11px; background: var(--accent-soft); padding: 7px; }
+/* App icons that are already a full rounded square. */
+.dl-logo-full { padding: 0; background: none; }
 .dl-head b { display: block; font-size: 1.02rem; }
 .dl-head small { color: var(--ink-faint); font-size: .82rem; }
 
@@ -109,6 +121,11 @@ section { padding: 64px 0 90px; }
 }
 .dl-alt svg { width: 16px; height: 16px; }
 .dl-alt:hover { border-color: var(--ink-faint); color: var(--ink); }
+.feature-list code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .86em;
+  background: var(--raise); border: 1px solid var(--line-soft);
+  padding: 1px 6px; border-radius: 5px;
+}
 
 .dl-specs { margin: 22px 0; border-top: 1px solid var(--line-soft); }
 .dl-specs > div { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--line-soft); font-size: .88rem; }
@@ -121,18 +138,6 @@ section { padding: 64px 0 90px; }
 }
 .dl-note svg { width: 17px; height: 17px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
 .dl-note b { color: var(--ink); font-weight: 600; }
-
-/* ---------- How it works (home) ---------- */
-.mech { border-top: 1px solid var(--line-soft); padding: 74px 0 80px; }
-.mech-fig { margin: 8px 0 0; }
-.mech-fig img {
-  display: block; width: 100%; height: auto; max-width: 780px;
-  margin-inline: auto;
-}
-.mech-note {
-  max-width: 60ch; margin: 26px auto 0; text-align: center;
-  font-size: .92rem; color: var(--ink-faint); line-height: 1.65;
-}
 
 /* ---------- Getting started (home) ---------- */
 .how { border-top: 1px solid var(--line-soft); padding: 74px 0 90px; }
@@ -147,6 +152,7 @@ section { padding: 64px 0 90px; }
   list-style: none; display: grid; gap: 20px;
   grid-template-columns: repeat(4, 1fr);
 }
+.qs-grid-3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px){ .qs-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px){ .qs-grid { grid-template-columns: 1fr; } }
 
@@ -188,161 +194,6 @@ section { padding: 64px 0 90px; }
 }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
 .btn-ghost svg { width: 16px; height: 16px; }
-
-/* ---------- Note section (home) ---------- */
-.note-sec { border-top: 1px solid var(--line-soft); padding: 60px 0 70px; }
-.note-card {
-  max-width: 62ch; margin-inline: auto;
-  background: var(--raise); border: 1px solid var(--line-soft);
-  border-left: 3px solid var(--accent); border-radius: 0;
-  padding: 26px 30px;
-}
-.note-card h2 {
-  font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em;
-  font-size: 1.35rem; line-height: 1.2; margin-bottom: 12px;
-}
-.note-card p { color: var(--ink-soft); font-size: .96rem; line-height: 1.7; margin-bottom: 12px; }
-.note-card p:last-child { margin-bottom: 0; }
-.note-card b { color: var(--ink); font-weight: 600; }
-
-/* ---------- Tutorial page ---------- */
-.tut-hero { padding: 60px 0 30px; text-align: center; }
-.tut-hero h1 {
-  font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(2.3rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.02em;
-  margin: 16px 0 14px;
-}
-.tut-hero .lead { margin-inline: auto; text-align: center; }
-
-/* Section table of contents */
-.tut-toc {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
-  padding: 8px 0 20px; margin-bottom: 24px; border-bottom: 1px solid var(--line-soft);
-}
-.tut-toc a {
-  font-size: .86rem; font-weight: 500; color: var(--ink-soft);
-  padding: 7px 15px; border-radius: 999px; border: 1px solid var(--line);
-  transition: border-color .2s, color .2s, background .2s;
-}
-.tut-toc a:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); }
-
-/* Step blocks */
-.tut-steps { display: grid; gap: 30px; padding-top: 10px; }
-.step {
-  background: var(--surface); border: 1px solid var(--line); border-radius: 18px;
-  padding: 30px 32px; box-shadow: 0 20px 50px -34px rgba(60,50,40,0.3);
-  scroll-margin-top: 90px;
-}
-.step-head { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.step-num {
-  flex-shrink: 0; width: 38px; height: 38px; border-radius: 11px;
-  display: inline-flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-size: 1.15rem;
-  color: var(--accent); background: var(--accent-soft);
-}
-.step-head h2 {
-  font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em;
-  font-size: 1.5rem; line-height: 1.15;
-}
-.step p { color: var(--ink-soft); font-size: .98rem; margin-bottom: 12px; }
-.step p:last-child { margin-bottom: 0; }
-.step ol, .step ul { color: var(--ink-soft); font-size: .98rem; padding-left: 20px; margin-bottom: 12px; display: grid; gap: 7px; }
-.step li { padding-left: 4px; }
-.step b { color: var(--ink); font-weight: 600; }
-.step code {
-  font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: .86em;
-  background: var(--raise); border: 1px solid var(--line-soft);
-  padding: 2px 7px; border-radius: 6px; color: var(--ink);
-}
-
-/* Sub-headings inside a step */
-.step h3 {
-  font-family: var(--font-body); font-weight: 600; font-size: 1rem;
-  color: var(--ink); letter-spacing: -0.005em;
-  margin: 22px 0 9px;
-}
-.step h3:first-of-type { margin-top: 18px; }
-
-/* "optional" tag beside a step title */
-.tag {
-  display: inline-block; vertical-align: middle;
-  font-family: var(--font-body); font-size: .68rem; font-weight: 500;
-  letter-spacing: .04em; text-transform: uppercase;
-  color: var(--ink-faint); background: var(--raise);
-  border: 1px solid var(--line); border-radius: 999px;
-  padding: 3px 9px; margin-left: 9px; position: relative; top: -2px;
-}
-
-/* Callout box inside a step */
-.note {
-  background: var(--raise); border: 1px solid var(--line-soft);
-  border-left: 3px solid var(--accent); border-radius: 10px;
-  padding: 13px 16px; margin: 16px 0 4px;
-  font-size: .92rem; color: var(--ink-soft); line-height: 1.55;
-}
-.note b { color: var(--ink); font-weight: 600; }
-.note:last-child { margin-bottom: 0; }
-.note-warn { border-left-color: #c9843f; background: #fdf6ee; }
-
-/* Troubleshooting definition list */
-.faq { display: grid; gap: 4px; }
-.faq dt {
-  font-weight: 600; font-size: .96rem; color: var(--ink);
-  margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line-soft);
-}
-.faq dt:first-child { margin-top: 4px; padding-top: 0; border-top: 0; }
-.faq dd {
-  margin: 6px 0 0; font-size: .93rem; color: var(--ink-soft); line-height: 1.6;
-}
-
-/* Closing call-to-action card */
-.step-cta { text-align: center; }
-.step-cta h2 {
-  font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em;
-  font-size: 1.5rem; line-height: 1.15; margin-bottom: 8px;
-}
-.step-cta p { margin-bottom: 20px; }
-
-/* Screenshot figure inside a step */
-.shot { margin: 18px 0 4px; }
-.shot img {
-  display: block; width: 100%; height: auto;
-  border: 1px solid var(--line); border-radius: 12px;
-  background: var(--raise);
-}
-.shot figcaption {
-  font-size: .84rem; color: var(--ink-faint); line-height: 1.55;
-  margin-top: 9px;
-}
-.shot figcaption b { color: var(--ink-soft); font-weight: 600; }
-/* Lay screenshots out side by side once there's room — auto-fits 2 or 3 up,
-   then drops to a single column on narrow screens. */
-.shot-pair {
-  display: grid; gap: 22px;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-  align-items: start;
-}
-.shot-pair .shot { margin: 18px 0 0; }
-
-/* Responsive 16:9 video frame */
-.video {
-  position: relative; width: 100%; aspect-ratio: 16 / 9; margin: 6px 0 4px;
-  border-radius: 13px; overflow: hidden; border: 1px solid var(--line);
-  background: var(--raise);
-}
-.video iframe, .video video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
-.video-placeholder {
-  position: absolute; inset: 0; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 10px;
-  color: var(--ink-faint); font-size: .9rem; text-align: center; padding: 20px;
-}
-.video-placeholder svg { width: 40px; height: 40px; color: var(--accent); opacity: .8; }
-.video-caption { font-size: .82rem; color: var(--ink-faint); margin-top: 2px; }
-
-/* Back link */
-.tut-back { display: inline-flex; align-items: center; gap: 7px; font-size: .9rem; font-weight: 500; color: var(--ink-soft); transition: color .2s; }
-.tut-back:hover { color: var(--accent); }
-.tut-back svg { width: 16px; height: 16px; }
 
 /* ---------- Footer ---------- */
 footer { border-top: 1px solid var(--line); padding: 34px 0; }
