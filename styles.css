@@ -110,6 +110,15 @@ nav {
 .about { padding: 64px 0 20px; }
 .about + .how, .how + .about { border-top: 1px solid var(--line-soft); }
 .about-body { max-width: 64ch; }
+/* Story section: text on the left, the collage on the right; stacked on phones. */
+.about-split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+.about-split .about-body { max-width: none; }
+.about-art { margin: 0; }
+.about-art img {
+  display: block; width: 100%; height: auto; border-radius: 18px;
+  box-shadow: 0 24px 50px -28px rgba(40,30,20,0.55);
+}
+@media (max-width: 860px) { .about-split { grid-template-columns: 1fr; gap: 32px; } }
 .about-body h2 {
   font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em;
   font-size: clamp(1.7rem, 3.2vw, 2.2rem); line-height: 1.15; margin-bottom: 14px;
