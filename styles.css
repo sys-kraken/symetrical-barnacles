@@ -92,7 +92,11 @@ nav {
 }
 
 /* About page hero: the artwork on its own (no overlay, no text), the same height as the home banner. */
-.about-hero { background: #0a1a3a; }
+.about-hero { position: relative; background: #0a1a3a; }
+.about-hero::before {   /* the same overlay as the home banner, with no text on it */
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(3,2,46,0.55), rgba(3,2,46,0.78));
+}
 .about-hero img {
   display: block; width: 100%; height: clamp(380px, 62vh, 600px);
   object-fit: cover; object-position: center 40%;
