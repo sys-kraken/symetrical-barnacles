@@ -91,8 +91,17 @@ nav {
   color: rgba(236,232,255,0.92); text-shadow: 0 1px 12px rgba(3,2,46,0.8);
 }
 
-/* About page: the collage's most interesting band sits a little above center. */
-.hero-about .hero-img { object-position: center 35%; }
+/* About page hero: the artwork already says "SYS KRAKEN", so it's shown whole, no overlay. */
+.about-hero { background: #0a1a3a; }
+.about-hero img { display: block; width: 100%; height: auto; max-width: 1500px; margin: 0 auto; }
+.about-intro {
+  font-family: var(--font-display); font-size: clamp(1.3rem, 2.4vw, 1.6rem) !important;
+  line-height: 1.35 !important; color: var(--ink) !important; margin-bottom: 34px !important;
+}
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
 
 /* ---------- About page ---------- */
 .about { padding: 64px 0 20px; }

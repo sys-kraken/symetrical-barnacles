@@ -34,18 +34,20 @@
   </nav>
 
   <!-- HERO -->
-  <header class="hero hero-about">
-    <div class="wrap hero-text">
-      <h1>About SysKraken</h1>
-      <p class="lead">One developer, a handful of small apps, and a simple rule: no ads, no tracking, nothing bundled.</p>
-    </div>
-    <img class="hero-img" src="assets/about-hero.webp" width="800" height="487" fetchpriority="high"
-         alt="A pop-art collage: an ON AIR sign, a vintage microphone, a chrome astronaut, stacked old TVs and retro sci-fi movie art" />
+  <header class="about-hero">
+    <!-- The artwork carries the "SYS KRAKEN" title itself, so it's shown whole with no text on top. -->
+    <h1 class="visually-hidden">About SysKraken</h1>
+    <picture>
+      <source media="(max-width: 760px)" srcset="assets/about-hero-900.webp" />
+      <img src="assets/about-hero.webp" width="1500" height="844" fetchpriority="high"
+           alt="SysKraken: a giant red many-eyed kraken rising from a stormy sea beside a small sailboat, with glowing pyramids in a green jungle behind it" />
+    </picture>
   </header>
 
   <!-- STORY -->
   <section class="about">
     <div class="wrap about-body">
+      <p class="about-intro">One developer, a handful of small apps, and a simple rule: no ads, no tracking, nothing bundled.</p>
       <h2>Why these apps exist</h2>
       <p>I build small Android apps for my family and friends, the kind of tools I wished existed: a YouTube player that doesn't stop when the screen turns off and doesn't interrupt with ads, and a converter that saves a song or video straight to the phone without a sketchy website in between.</p>
       <p>Once they worked well at home, it made sense to share them. Everything here is free, and the source code for every app is public, so anyone can see exactly what it does.</p>
