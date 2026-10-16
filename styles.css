@@ -41,6 +41,8 @@ nav {
 .brand { display: flex; align-items: center; gap: 9px; font-weight: 600; font-size: 1.12rem; letter-spacing: -0.01em; }
 .brand .mark { width: 24px; height: 24px; object-fit: contain; }
 /* Wordmark colours sampled from the logo: coral body + deep plum shading. */
+/* One word: the gap above is only between the logo and the name. */
+.brand .wordmark { display: inline; white-space: nowrap; }
 .brand span { color: var(--accent); }
 .brand b { font-weight: 600; color: var(--logo-shade); }
 .nav-links { display: flex; align-items: center; gap: 30px; }
@@ -138,6 +140,21 @@ section { padding: 64px 0 90px; }
 }
 .dl-note svg { width: 17px; height: 17px; color: var(--accent); flex-shrink: 0; margin-top: 2px; }
 .dl-note b { color: var(--ink); font-weight: 600; }
+
+/* ---------- Screenshots ---------- */
+.shots {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 210px);
+  gap: 22px; margin-top: 44px; padding: 6px 2px 14px;
+  overflow-x: auto; scroll-snap-type: x mandatory; justify-content: start;
+}
+@media (min-width: 900px){ .shots { justify-content: center; } }
+.shot-phone { scroll-snap-align: start; margin: 0; }
+.shot-phone img {
+  display: block; width: 100%; height: auto;
+  border-radius: 22px; border: 6px solid #1d1a17; background: #120d0b;
+  box-shadow: 0 22px 45px -28px rgba(40,30,20,0.55);
+}
+.shot-phone figcaption { text-align: center; font-size: .84rem; color: var(--ink-soft); margin-top: 10px; }
 
 /* ---------- Getting started (home) ---------- */
 .how { border-top: 1px solid var(--line-soft); padding: 74px 0 90px; }
