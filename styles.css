@@ -67,33 +67,32 @@ nav {
 .btn-primary:hover { background: #b5563a; transform: translateY(-2px); }
 
 /* ---------- Hero ---------- */
-/* The artwork sits on its own deep navy; on wide screens the headline floats over the starry sky. */
+/* A banner cut from the artwork, darkened by an overlay, with the text centered on it. */
 .hero { position: relative; background: #03022e; overflow: hidden; text-align: center; }
 .hero-img {
-  display: block; width: 100%; height: auto;  /* always the whole artwork, never cropped */
+  display: block; width: 100%; height: clamp(380px, 62vh, 600px);
+  object-fit: cover; object-position: center 62%;
 }
-.hero-text { position: absolute; inset: 0 0 auto 0; z-index: 1; padding-top: clamp(28px, 4.5vw, 64px); }
-.hero::before {          /* soft shade behind the headline so it stays readable over the stars */
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 34%; z-index: 1; pointer-events: none;
-  background: linear-gradient(to bottom, rgba(3,2,46,0.82), rgba(3,2,46,0.45) 60%, rgba(3,2,46,0));
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(3,2,46,0.55), rgba(3,2,46,0.78));
 }
-.hero-text { z-index: 2; }
+.hero-text {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
 .hero h1 {
   font-family: var(--font-display); font-weight: 400; color: #fff;
   font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.05; letter-spacing: -0.02em;
-  margin: 0 auto 14px; max-width: 18ch; text-shadow: 0 2px 18px rgba(3,2,46,0.7);
+  margin: 0 auto 16px; max-width: 18ch; text-shadow: 0 2px 18px rgba(3,2,46,0.7);
 }
-/* The intro paragraph sits just under the artwork, on the page background. */
-.hero-after { text-align: center; padding-top: 34px; }
-.hero-after .lead { margin: 0 auto; max-width: 54ch; }
-/* Phones: the picture is too short to hold text, so the headline sits above it on the same navy. */
-@media (max-width: 760px) {
-  .hero-text { position: static; padding: 40px 0 22px; }
-  .hero::before { display: none; }
+.hero .lead {
+  margin: 0 auto; max-width: 52ch;
+  color: rgba(236,232,255,0.92); text-shadow: 0 1px 12px rgba(3,2,46,0.8);
 }
 
 /* ---------- Trust row ---------- */
-.trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 28px; padding: 28px 0 8px; }
+.trust { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px 28px; padding: 32px 0 8px; }
 .trust span { display: inline-flex; align-items: center; gap: 8px; font-size: .88rem; color: var(--ink-soft); }
 .trust svg { width: 17px; height: 17px; color: var(--accent); }
 
