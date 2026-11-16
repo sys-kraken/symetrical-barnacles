@@ -34,3 +34,27 @@ async function loadLatestRelease(panel) {
 }
 
 document.querySelectorAll(".dl-panel[data-repo]").forEach(loadLatestRelease);
+
+// Safety pop-up: opens on load, then stays away for 30 minutes.
+(function () {
+  const modal = document.getElementById("safe-modal");
+  if (!modal) return;
+  const ok = document.getElementById("modal-go");
+  const KEY = "safeModalSeenAt", TTL = 30 * 60 * 1000;
+
+  try {
+    const seen = Number(localStorage.getItem(KEY));
+    if (seen && Date.now() - seen < TTL) return;
+    localStorage.setItem(KEY, String(Date.now()));
+  } catch (e) { /* storage blocked: just show it */ }
+
+  const close = () => { modal.hidden = true; document.body.style.overflow = ""; };
+
+  modal.hidden = false;
+  document.body.style.overflow = "hidden";
+  ok.focus();
+
+  ok.addEventListener("click", close);
+  modal.addEventListener("click", e => { if (e.target === modal) close(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) close(); });
+})();
