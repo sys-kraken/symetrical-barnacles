@@ -55,6 +55,5 @@ document.querySelectorAll(".dl-panel[data-repo]").forEach(loadLatestRelease);
   ok.focus();
 
   ok.addEventListener("click", close);
-  modal.addEventListener("click", e => { if (e.target === modal) close(); });
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !modal.hidden) close(); });
 })();
